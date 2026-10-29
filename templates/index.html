@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Torneo Eliminatorio · Árbol Binario</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header class="top">
+    <span class="brand">ESTRUCTURA DE DATOS · ÁRBOLES</span>
+    <h1>Gestor de torneo eliminatorio</h1>
+    <p>Los equipos se organizan en un árbol binario de búsqueda por nombre. Cada nivel del árbol es una ronda.</p>
+  </header>
+
+  <main class="layout">
+    <aside class="side">
+      <section class="card g3" aria-labelledby="t-ctrl">
+        <h2 id="t-ctrl">Controles</h2>
+        <form id="team-form" autocomplete="off">
+          <label for="team-input">Nombre del equipo</label>
+          <input id="team-input" type="text" maxlength="40" placeholder="Ej.: Jaguares" title="Escribe el nombre del equipo">
+          <div class="btn-row">
+            <button type="submit" id="btn-insert" class="btn light" title="Insertar el equipo en el árbol">Insertar</button>
+            <button type="button" id="btn-search" class="btn light" title="Buscar y resaltar el camino recorrido">Buscar</button>
+            <button type="button" id="btn-delete" class="btn dark" title="Eliminar el equipo del árbol">Eliminar</button>
+          </div>
+        </form>
+        <div class="btn-row">
+          <button type="button" id="btn-sample" class="btn outline" title="Cargar 8 equipos de ejemplo">Cargar ejemplo</button>
+          <button type="button" id="btn-reset" class="btn outline" title="Vaciar el árbol">Reiniciar</button>
+        </div>
+        <div id="message" class="message" role="status" aria-live="polite"></div>
+      </section>
+
+      <section class="card g4" aria-labelledby="t-trav">
+        <h2 id="t-trav">Recorridos</h2>
+        <div class="btn-grid">
+          <button class="btn amber trav" data-kind="inorder" title="Izquierda, raíz, derecha: devuelve los equipos en orden alfabético">Inorden</button>
+          <button class="btn amber trav" data-kind="preorder" title="Raíz, izquierda, derecha">Preorden</button>
+          <button class="btn amber trav" data-kind="postorder" title="Izquierda, derecha, raíz">Postorden</button>
+          <button class="btn amber trav" data-kind="levelorder" title="Por niveles: equivale a las rondas del torneo">Por niveles</button>
+        </div>
+        <div class="result-box">
+          <span class="result-title" id="trav-title">Orden de visita</span>
+          <ol id="trav-result" class="chips" aria-labelledby="trav-title"></ol>
+        </div>
+      </section>
+    </aside>
+
+    <section class="stage">
+      <div class="card g2 canvas-card">
+        <div class="legend" aria-label="Leyenda de colores">
+          <span><i class="dot root"></i>Raíz</span>
+          <span><i class="dot branch"></i>Rama</span>
+          <span><i class="dot leaf"></i>Hoja</span>
+        </div>
+        <div id="canvas" class="canvas"></div>
+      </div>
+
+      <section class="card g1 metrics" aria-labelledby="t-met">
+        <h2 id="t-met">Métricas en vivo</h2>
+        <div class="stats">
+          <div class="stat" title="Niveles del camino más largo (la raíz es el nivel 1)"><b id="m-height">0</b><span>Altura</span></div>
+          <div class="stat" title="Cantidad total de nodos"><b id="m-weight">0</b><span>Peso</span></div>
+          <div class="stat" title="Máximo de hijos que puede tener un nodo"><b id="m-order">2</b><span>Orden</span></div>
+          <div class="stat" title="Mayor cantidad de hijos que tiene algún nodo ahora"><b id="m-degree">0</b><span>Grado máx.</span></div>
+          <div class="stat" title="Nodos sin hijos"><b id="m-leaves">0</b><span>Hojas</span></div>
+          <div class="stat" title="Nodos que no son raíz y tienen hijos"><b id="m-branches">0</b><span>Ramas</span></div>
+        </div>
+        <div id="node-info" class="node-info">Haz clic en un nodo para ver su nivel, grado y hermanos.</div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="foot">Taller de Árboles · Estructuras de Datos · Cuarto semestre</footer>
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
