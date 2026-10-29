@@ -32,7 +32,7 @@ function say(text, kind = "") {
 }
 
 // Render del árbol en SVG ---------------------------------------------------
-const X_GAP = 88, Y_GAP = 90, R = 35, PAD_X = 60, PAD_TOP = 50;
+const X_GAP = 90, Y_GAP = 92, R = 36, PAD_X = 60, PAD_TOP = 50;
 
 function layout(tree) {
   // x = posición inorden, y = nivel -> sin cruces de aristas
@@ -72,8 +72,8 @@ function render(tree, popValue = null) {
 
   for (let l = 1; l <= maxLevel; l++) {
     const y = PAD_TOP + (l - 1) * Y_GAP;
-    svg.appendChild(el("line", { x1: 0, x2: width, y1: y + 44, y2: y + 44, class: "level-line" }));
-    svg.appendChild(el("text", { x: 8, y: y - 34, class: "level-label" }, `Ronda ${l}`));
+    svg.appendChild(el("line", { x1: 0, x2: width, y1: y + 46, y2: y + 46, class: "level-line" }));
+    svg.appendChild(el("text", { x: 8, y: y - 40, class: "level-label" }, `Ronda ${l}`));
   }
   const edges = el("g");
   const circles = el("g");
@@ -88,8 +88,9 @@ function render(tree, popValue = null) {
   for (const n of nodes) {
     const g = el("g", { class: `node ${n.type}` + (n.value === popValue ? " pop" : ""), "data-value": n.value, tabindex: 0 });
     g.appendChild(el("title", {}, `${n.value} · ${typeName[n.type]} · Nivel ${n.level} · Grado ${n.degree}`));
-    g.appendChild(el("circle", { cx: n.x, cy: n.y, r: R }));
-    const label = n.value.length > 9 ? n.value.slice(0, 8) + "…" : n.value;
+    g.appendChild(el("rect", { x: n.x - R + 5, y: n.y - R + 5, width: R * 2, height: R * 2, class: "shadow" }));
+    g.appendChild(el("rect", { x: n.x - R, y: n.y - R, width: R * 2, height: R * 2 }));
+    const label = n.value.length > 8 ? n.value.slice(0, 7) + "…" : n.value;
     g.appendChild(el("text", { x: n.x, y: n.y + 4 }, label));
     g.addEventListener("click", () => { input.value = n.value; showNodeInfo(n.value); });
     g.addEventListener("keydown", (ev) => { if (ev.key === "Enter") { input.value = n.value; showNodeInfo(n.value); } });

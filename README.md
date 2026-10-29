@@ -41,7 +41,7 @@ python -m pytest
 2. Escribe un nombre y usa **Insertar**, **Buscar** o **Eliminar**. La búsqueda anima el camino recorrido desde la raíz.
 3. Los botones de **Recorridos** animan el orden de visita nodo por nodo.
 4. El panel de **Métricas en vivo** se actualiza tras cada cambio. Al hacer clic en un nodo se ven su nivel, grado y hermanos.
-5. Colores: **raíz** amarillo, **rama** azul, **hoja** verde.
+5. Colores de nodos: **raíz** amarillo, **rama** azul, **hoja** verde. Interfaz estilo pixel art con la paleta Yale Blue, Cool Steel, Dust Grey, Goldenrod y Dark Coffee (tipografía Press Start 2P incluida en `static/fonts`).
 
 ## API REST
 
